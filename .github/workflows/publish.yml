@@ -1,0 +1,58 @@
+name: Publish Android release
+on:
+  push:
+    branches: [delivery]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: publish-android
+  cancel-in-progress: false
+jobs:
+  publish:
+    if: github.ref == 'refs/heads/delivery'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - name: Validate delivery
+        id: delivery
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          import crypto from 'node:crypto';
+          const info = JSON.parse(fs.readFileSync('update.json'));
+          if (!Number.isSafeInteger(info.versionCode) || info.versionCode <= 0) throw Error('Invalid version code');
+          const tag = `v${info.versionName}`;
+          if (!/^v[0-9A-Za-z.-]+$/.test(tag)) throw Error('Invalid tag');
+          const file = `Musonic-${info.versionName}.apk`;
+          if (info.apkUrl !== `https://github.com/${process.env.GITHUB_REPOSITORY}/releases/download/${tag}/${file}`) throw Error('Invalid URL');
+          const bytes = fs.readFileSync(file);
+          if (bytes.length !== info.size || crypto.createHash('sha256').update(bytes).digest('hex') !== info.sha256) throw Error('Invalid APK');
+          const response = await fetch(`https://api.github.com/repos/${process.env.GITHUB_REPOSITORY}/releases/latest`, {headers: {Authorization: `Bearer ${process.env.GH_TOKEN}`}});
+          if (!response.ok && response.status !== 404) throw Error(`Latest release lookup failed: ${response.status}`);
+          if (response.ok) {
+            const previous = await response.json();
+            const previousCode = Number(previous.tag_name.match(/-build\.(\d+)$/)?.[1] || 0);
+            if (previousCode >= info.versionCode) {
+              fs.appendFileSync(process.env.GITHUB_OUTPUT, 'skip=true\n');
+              process.exit(0);
+            }
+          }
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `tag=${tag}\nfile=${file}\n`);
+          JS
+      - name: Create release and upload files
+        if: steps.delivery.outputs.skip != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.delivery.outputs.tag }}
+          APK: ${{ steps.delivery.outputs.file }}
+        run: |
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" "$APK" update.json SHA256SUMS --clobber
+          else
+            gh release create "$TAG" "$APK" update.json SHA256SUMS --target "$GITHUB_SHA" --title "Musonic ${TAG#v}" --notes-file RELEASE.md --draft
+          fi
+          gh release edit "$TAG" --draft=false --latest
