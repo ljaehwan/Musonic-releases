@@ -14,7 +14,7 @@ Musonic connects directly to a music server you choose. Browse albums and artist
 - **Make it yours:** light and dark appearance; Korean, English, Japanese, Simplified Chinese, and Spanish.
 - **Keep control of your connection:** encrypted on-device credentials, artwork caching, and no advertising or analytics SDK.
 
-<p align="center"><img src="docs/assets/library.jpg" alt="Connected music library" width="23%"> <img src="docs/assets/player.jpg" alt="Now playing" width="23%"> <img src="docs/assets/equalizer.png" alt="Ten-band equalizer" width="23%"> <img src="docs/assets/presets.png" alt="Sound presets" width="23%"></p>
+<p align="center"><img src="docs/assets/library.png" alt="Connected music library" width="23%"> <img src="docs/assets/player.png" alt="Now playing" width="23%"> <img src="docs/assets/equalizer.png" alt="Ten-band equalizer" width="23%"> <img src="docs/assets/presets.png" alt="Sound presets" width="23%"></p>
 
 Musonic does not provide songs, a music subscription, or a server account. Bring a compatible Subsonic/OpenSubsonic server and music you have permission to access. Server-specific features can vary. Android Auto integration is under development and still needs real-car verification.
 
@@ -27,6 +27,12 @@ Musonic does not provide songs, a music subscription, or a server account. Bring
 The GitHub build checks this release repository for updates. You can download and install an available update from the app; Android asks you to confirm installation. Existing GitHub releases retain their update-compatible signing certificate.
 
 **Google Play:** registration is in progress. There is no published Play listing yet. The planned Play build receives updates through Google Play and requires HTTPS. Its signing certificate will differ from existing GitHub APKs, so switching between these distributions requires uninstalling and reinstalling. This removes local connection/settings/history data; your server library remains on the server. Keep using the same installation channel for normal updates.
+
+## Set up your own server
+
+Have a music folder but no server yet? Run Navidrome on a PC, NAS or home server with the [Docker Compose example](https://github.com/ljaehwan/Musonic/tree/main/examples/navidrome). It mounts your music read-only and keeps the server data separate.
+
+The [setup guide](https://github.com/ljaehwan/Musonic/blob/main/docs/SERVER-SETUP.md) covers creating an account, connecting Musonic over Wi-Fi, and HTTPS access away from home. If you already use a Subsonic/OpenSubsonic server, enter its address and account in the app.
 
 ## Help Musonic improve
 
@@ -45,6 +51,8 @@ This repository hosts APK releases and the privacy policy. The application sourc
 Musonic은 Subsonic/OpenSubsonic 호환 서버에 연결하는 **무료·광고 없는 Android 음악 앱**입니다. 앨범·아티스트 탐색, 검색, 좋아요, 최근 재생, 앱 내부 10밴드 이퀄라이저와 음질 설정을 제공합니다. 음악 서버와 계정은 별도로 준비해야 합니다.
 
 [최신 APK](https://github.com/ljaehwan/Musonic-releases/releases/latest)를 설치한 뒤 서버 주소와 계정을 입력하세요. GitHub 설치본은 앱에서 업데이트를 확인·다운로드하며, 설치는 Android 확인 화면에서 승인합니다. Play 버전은 등록 준비 중이며 아직 스토어에 공개되지 않았습니다. 두 배포본은 서명이 달라 전환 시 재설치가 필요합니다.
+
+서버가 처음이라면 [Docker로 Navidrome 설정하기](https://github.com/ljaehwan/Musonic/blob/main/docs/SERVER-SETUP.ko.md)를 따라 음악 폴더를 연결하고 앱에서 재생할 수 있습니다. 기존 호환 서버도 그대로 사용할 수 있습니다.
 
 개발을 응원하고 싶다면 [GitHub Sponsors](https://github.com/sponsors/ljaehwan)에서 선택적으로 후원할 수 있습니다. 후원 여부와 관계없이 모든 기능은 무료입니다.
 
