@@ -1,0 +1,11 @@
+name: Feature or translation idea / 기능·번역 제안
+description: Suggest a useful improvement to Musonic.
+title: "[Idea] "
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: What would you like to improve? / 개선하고 싶은 점
+      description: "Describe the situation and the result you want. Translation suggestions are welcome."
+    validations:
+      required: true

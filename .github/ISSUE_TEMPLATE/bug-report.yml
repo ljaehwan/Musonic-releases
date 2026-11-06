@@ -1,0 +1,37 @@
+name: Bug report / 버그 제보
+description: Report a reproducible issue in Musonic.
+title: "[Bug] "
+body:
+  - type: markdown
+    attributes:
+      value: "Please remove passwords, API keys, authenticated URLs and private music metadata. 개인 정보와 인증 정보는 올리지 마세요."
+  - type: input
+    id: version
+    attributes:
+      label: Musonic version / 앱 버전
+      placeholder: "0.4.1-build.1049"
+    validations:
+      required: true
+  - type: input
+    id: device
+    attributes:
+      label: Device and Android version / 기기 및 Android 버전
+    validations:
+      required: true
+  - type: input
+    id: server
+    attributes:
+      label: Server software and version / 서버 소프트웨어 및 버전
+      description: "Server product/version only; no credentials or private server address."
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce / 재현 방법
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: Expected and actual behavior / 기대한 동작과 실제 동작
+    validations:
+      required: true
