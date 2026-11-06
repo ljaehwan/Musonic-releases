@@ -14,7 +14,7 @@ Musonic connects directly to a music server you choose. Browse albums and artist
 - **Make it yours:** light and dark appearance; Korean, English, Japanese, Simplified Chinese, and Spanish.
 - **Keep control of your connection:** encrypted on-device credentials, artwork caching, and no advertising or analytics SDK.
 
-<p align="center"><img src="docs/assets/library.png" alt="Connected music library" width="23%"> <img src="docs/assets/player.png" alt="Now playing" width="23%"> <img src="docs/assets/equalizer.png" alt="Ten-band equalizer" width="23%"> <img src="docs/assets/presets.png" alt="Sound presets" width="23%"></p>
+<p align="center"><img src="docs/assets/library.png" alt="Connected music library" width="23%"> <img src="docs/assets/player.png" alt="Now playing" width="23%"> <img src="docs/assets/equalizer-en.png" alt="Ten-band equalizer" width="23%"> <img src="docs/assets/presets-en.png" alt="Sound presets" width="23%"></p>
 
 Musonic does not provide songs, a music subscription, or a server account. Bring a compatible Subsonic/OpenSubsonic server and music you have permission to access. Server-specific features can vary. Android Auto integration is under development and still needs real-car verification.
 
@@ -33,6 +33,14 @@ The GitHub build checks this release repository for updates. You can download an
 Have a music folder but no server yet? Run Navidrome on a PC, NAS or home server with the [Docker Compose example](https://github.com/ljaehwan/Musonic/tree/main/examples/navidrome). It mounts your music read-only and keeps the server data separate.
 
 The [setup guide](https://github.com/ljaehwan/Musonic/blob/main/docs/SERVER-SETUP.md) covers creating an account, connecting Musonic over Wi-Fi, and HTTPS access away from home. If you already use a Subsonic/OpenSubsonic server, enter its address and account in the app.
+
+| Server | Docker installation |
+| --- | --- |
+| [Navidrome](https://www.navidrome.org/) | [Official Docker guide](https://www.navidrome.org/docs/installation/docker/) |
+| [Gonic](https://github.com/sentriz/gonic) | [Project Docker guide](https://github.com/sentriz/gonic/wiki/installation#with-docker) |
+| [Airsonic-Advanced](https://github.com/kagemomiji/airsonic-advanced) | [Docker guide](https://github.com/kagemomiji/airsonic-advanced#docker) · [Compose examples](https://github.com/kagemomiji/airsonic-advanced/tree/main/install/compose) |
+
+Navidrome has been tested with Musonic. Gonic and Airsonic-Advanced provide Subsonic APIs, but have not yet been tested with Musonic; available features may differ.
 
 ## Help Musonic improve
 
@@ -53,6 +61,8 @@ Musonic은 Subsonic/OpenSubsonic 호환 서버에 연결하는 **무료·광고 
 [최신 APK](https://github.com/ljaehwan/Musonic-releases/releases/latest)를 설치한 뒤 서버 주소와 계정을 입력하세요. GitHub 설치본은 앱에서 업데이트를 확인·다운로드하며, 설치는 Android 확인 화면에서 승인합니다. Play 버전은 등록 준비 중이며 아직 스토어에 공개되지 않았습니다. 두 배포본은 서명이 달라 전환 시 재설치가 필요합니다.
 
 서버가 처음이라면 [Docker로 Navidrome 설정하기](https://github.com/ljaehwan/Musonic/blob/main/docs/SERVER-SETUP.ko.md)를 따라 음악 폴더를 연결하고 앱에서 재생할 수 있습니다. 기존 호환 서버도 그대로 사용할 수 있습니다.
+
+다른 서버의 공식 Docker 안내: [Navidrome](https://www.navidrome.org/docs/installation/docker/) · [Gonic](https://github.com/sentriz/gonic/wiki/installation#with-docker) · [Airsonic-Advanced](https://github.com/kagemomiji/airsonic-advanced#docker). Musonic에서 연결·재생을 확인한 서버는 Navidrome입니다.
 
 개발을 응원하고 싶다면 [GitHub Sponsors](https://github.com/sponsors/ljaehwan)에서 선택적으로 후원할 수 있습니다. 후원 여부와 관계없이 모든 기능은 무료입니다.
 
